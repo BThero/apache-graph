@@ -5,8 +5,12 @@ import * as S from './Nav.styled';
 const Nav = (): JSX.Element => {
   return (
     <S.Nav>
-      <NavLink to="/targets">Investments Targets</NavLink>
-      <NavLink to="/predicted">Predicted Investments</NavLink>
+      <NavLink to="/targets" className={({ isActive }) => (isActive ? 'active' : undefined)}>
+        Investments Targets
+      </NavLink>
+      <NavLink to="/predicted" className={({ isActive }) => (isActive ? 'active' : undefined)}>
+        Predicted Investments
+      </NavLink>
     </S.Nav>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactECharts from 'echarts-for-react';
 import theme from 'misc/theme.json';
 import { device } from 'misc/device';
-import { IPrediction, getPredictionData, months } from 'misc/api';
+import { IPrediction, getPredictionData, months, capitalize } from 'misc/api';
 
 const data = getPredictionData();
 
@@ -14,7 +14,7 @@ const renderMonths = (): string[] => {
   const res: string[] = [];
 
   for (let i = 0; i < data.length; i += 1) {
-    res.push(months[i % 12]);
+    res.push(capitalize(months[i % 12].slice(0, 3)));
   }
 
   return res;
@@ -34,7 +34,25 @@ const mainAxisOption = {
 const crossAxisOption = {
   type: 'value',
   max: 100,
-  min: 0
+  min: 0,
+  axisLabel: {
+    formatter: `{value}%`
+  },
+  offset: 50
+};
+
+const axisOptions = (isDesktop: boolean): { xAxis: any; yAxis: any } => {
+  if (isDesktop) {
+    return {
+      xAxis: mainAxisOption,
+      yAxis: crossAxisOption
+    };
+  }
+
+  return {
+    yAxis: { ...mainAxisOption, inverse: true },
+    xAxis: crossAxisOption
+  };
 };
 
 const InvestmentsTargets = (): JSX.Element => {
@@ -45,16 +63,9 @@ const InvestmentsTargets = (): JSX.Element => {
   }, []);
 
   const option = {
-    xAxis: isDesktop ? mainAxisOption : crossAxisOption,
-    yAxis: !isDesktop ? mainAxisOption : crossAxisOption,
+    ...axisOptions(isDesktop),
     tooltip: {
       trigger: 'item'
-    },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
     },
     series: [
       {
@@ -62,12 +73,7 @@ const InvestmentsTargets = (): JSX.Element => {
         stack: 'total',
         silent: true,
         data: data.map((item) => ({
-          value: item.low,
-          tooltip: {
-            formatter: () => {
-              /* empty function */
-            }
-          }
+          value: item.low
         })),
         itemStyle: {
           color: 'transparent',
@@ -84,6 +90,7 @@ const InvestmentsTargets = (): JSX.Element => {
             formatter: renderTooltipText(item)
           }
         })),
+        animation: false,
         itemStyle: {
           color: theme.color.red,
           shadowColor: `rgba(0, 0, 0, 0.4)`,

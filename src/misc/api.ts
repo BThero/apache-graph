@@ -82,3 +82,9 @@ export const months: Array<string> = [
   'november',
   'december'
 ];
+
+export const capitalize = (s: string): string => {
+  if (s.length === 0) return s;
+
+  return s.slice(0, 1).toUpperCase() + s.slice(1).toLowerCase();
+};

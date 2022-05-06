@@ -7,7 +7,7 @@ import { IInvestment, getInvestmentData } from 'misc/api';
 const data = getInvestmentData();
 
 const renderTooltipText = (item: IInvestment): string => {
-  return [`Investment ID: ${item.id}`, `Company: ${item.company}`, `Profit: ${item.profit}`].join(
+  return [`Investment ID: ${item.id}`, `Company: ${item.company}`, `Profit: ${item.profit}€`].join(
     '<br />'
   );
 };
@@ -34,7 +34,10 @@ const mainAxisOption = {
 };
 
 const crossAxisOption = {
-  type: 'value'
+  type: 'value',
+  axisLabel: {
+    formatter: `{value}€`
+  }
 };
 
 const InvestmentsTargets = (): JSX.Element => {
