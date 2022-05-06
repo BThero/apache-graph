@@ -1,0 +1,17 @@
+{
+  "color": {
+    "black": "#222",
+    "white": "#fff",
+
+    "orange": "#FF6900",
+    "yellow": "#FCB900",
+    "lime": "#7BDCB5",
+    "green": "#00D084",
+    "lightblue": "#8ED1FC",
+    "blue": "#0693E3",
+    "gray": "#ABB8C3",
+    "red": "#EB144C",
+    "pink": "#F78DA7",
+    "purple": "#9900EF"
+  }
+}
