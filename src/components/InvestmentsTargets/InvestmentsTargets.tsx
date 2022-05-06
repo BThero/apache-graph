@@ -2,12 +2,9 @@ import React, { useState, useEffect } from 'react';
 import ReactECharts from 'echarts-for-react';
 import theme from 'misc/theme.json';
 import { device } from 'misc/device';
+import { IInvestment, getInvestmentData } from 'misc/api';
 
-interface IInvestment {
-  profit: number;
-  company: string;
-  id: number;
-}
+const data = getInvestmentData();
 
 const renderTooltipText = (item: IInvestment): string => {
   return [`Investment ID: ${item.id}`, `Company: ${item.company}`, `Profit: ${item.profit}`].join(
@@ -23,43 +20,22 @@ const renderLabelPosition = (isDesktop: boolean, value: number): string => {
   return value > 0 ? 'right' : 'left';
 };
 
-const data: IInvestment[] = [
-  {
-    profit: 3000,
-    company: 'Company A',
-    id: 1
+const mainAxisOption = {
+  type: 'category',
+  splitLine: {
+    show: false
   },
-  {
-    profit: -2000,
-    company: 'Company B',
-    id: 2
+  axisTick: {
+    show: false
   },
-  {
-    profit: 1500,
-    company: 'Company C',
-    id: 3
-  },
-  {
-    profit: 4000,
-    company: 'Company D',
-    id: 4
-  },
-  {
-    profit: -6000,
-    company: 'Company E',
-    id: 5
-  },
-  {
-    profit: 2000,
-    company: 'Company F',
-    id: 6
-  },
-  {
-    profit: -1300,
-    company: 'Company G',
-    id: 6
+  axisLabel: {
+    show: false
   }
-];
+};
+
+const crossAxisOption = {
+  type: 'value'
+};
 
 const InvestmentsTargets = (): JSX.Element => {
   const [isDesktop, setIsDesktop] = useState(window.matchMedia(device.desktop).matches);
@@ -69,34 +45,8 @@ const InvestmentsTargets = (): JSX.Element => {
   }, []);
 
   const option = {
-    xAxis: isDesktop
-      ? {
-          type: 'category',
-          splitLine: {
-            show: false
-          },
-          axisTick: {
-            show: false
-          },
-          axisLabel: {
-            show: false
-          }
-        }
-      : { type: 'value' },
-    yAxis: !isDesktop
-      ? {
-          type: 'category',
-          splitLine: {
-            show: false
-          },
-          axisTick: {
-            show: false
-          },
-          axisLabel: {
-            show: false
-          }
-        }
-      : { type: 'value' },
+    xAxis: isDesktop ? mainAxisOption : crossAxisOption,
+    yAxis: !isDesktop ? mainAxisOption : crossAxisOption,
     tooltip: {
       trigger: 'item'
     },
@@ -130,7 +80,6 @@ const InvestmentsTargets = (): JSX.Element => {
 
   return (
     <div>
-      <p>Investments Targets</p>
       <ReactECharts
         option={option}
         opts={{

@@ -1,10 +1,16 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+
 import * as S from './Header.styled';
 
 const Header = (): JSX.Element => {
+  const location = useLocation();
+
   return (
     <S.Header>
-      <S.Title>Investments targets</S.Title>
+      <S.Title>
+        {location.pathname === '/targets' ? 'Investments targets' : 'Predicted Investments'}
+      </S.Title>
     </S.Header>
   );
 };

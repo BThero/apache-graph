@@ -5,7 +5,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 import GlobalStyles from 'globalstyles';
 import InvestmentsTargets from 'components/InvestmentsTargets';
-import PredictedInvestments from 'components/PredictedInvestments/PredictedInvestments';
+import PredictedInvestments from 'components/PredictedInvestments';
 import App from './App';
 
 import reportWebVitals from './reportWebVitals';
