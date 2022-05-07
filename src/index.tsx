@@ -6,6 +6,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import GlobalStyles from 'globalstyles';
 import InvestmentsTargets from 'components/InvestmentsTargets';
 import PredictedInvestments from 'components/PredictedInvestments';
+import Welcome from 'components/Welcome';
 import App from './App';
 
 import reportWebVitals from './reportWebVitals';
@@ -21,6 +22,7 @@ root.render(
           <Route path="/" element={<App />}>
             <Route path="targets" element={<InvestmentsTargets />} />
             <Route path="predicted" element={<PredictedInvestments />} />
+            <Route index element={<Welcome />} />
           </Route>
         </Routes>
       </BrowserRouter>

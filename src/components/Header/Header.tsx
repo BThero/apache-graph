@@ -3,14 +3,17 @@ import { useLocation } from 'react-router-dom';
 
 import * as S from './Header.styled';
 
+const Title = new Map([
+  ['/targets', 'Investments Targets'],
+  ['/predicted', 'Predicted Investments']
+]);
+
 const Header = (): JSX.Element => {
   const location = useLocation();
 
   return (
     <S.Header>
-      <S.Title>
-        {location.pathname === '/targets' ? 'Investments targets' : 'Predicted Investments'}
-      </S.Title>
+      <S.Title>{Title.get(location.pathname) ?? 'Welcome'}</S.Title>
     </S.Header>
   );
 };

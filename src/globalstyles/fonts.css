@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'InterExtraBold';
+  font-style: normal;
+  font-weight: 800;
+  font-display: fallback;
+  src: url('assets/fonts/Inter-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: 'InterBold';
+  font-style: normal;
+  font-weight: bold;
+  font-display: fallback;
+  src: url('assets/fonts/Inter-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'InterSemiBold';
+  font-style: normal;
+  font-weight: 600;
+  font-display: fallback;
+  src: url('assets/fonts/Inter-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'InterRegular';
+  font-style: normal;
+  font-weight: normal;
+  font-display: fallback;
+  src: url('assets/fonts/Inter-Regular.ttf');
+}

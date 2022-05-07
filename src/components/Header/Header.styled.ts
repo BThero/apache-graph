@@ -8,6 +8,7 @@ const Header = styled.header`
 
 const Title = styled.h1`
   color: var(--white);
+  font-family: 'InterBold';
 `;
 
 export { Header, Title };

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import ReactECharts from 'echarts-for-react';
 import theme from 'misc/theme.json';
 import { device } from 'misc/device';
 import { IPrediction, getPredictionData, months, capitalize } from 'misc/api';
+import ChartWrapper from 'components/ChartWrapper';
+import HomeLink from 'components/HomeLink';
+
+import * as S from './PredictedInvestments.styled';
 
 const data = getPredictionData();
 
@@ -41,7 +44,7 @@ const crossAxisOption = {
   offset: 50
 };
 
-const axisOptions = (isDesktop: boolean): { xAxis: any; yAxis: any } => {
+const axisOptions = (isDesktop: boolean): { xAxis: unknown; yAxis: unknown } => {
   if (isDesktop) {
     return {
       xAxis: mainAxisOption,
@@ -118,14 +121,10 @@ const InvestmentsTargets = (): JSX.Element => {
   };
 
   return (
-    <div>
-      <ReactECharts
-        option={option}
-        opts={{
-          height: isDesktop ? 600 : Math.max(600, data.length * 100)
-        }}
-      />
-    </div>
+    <S.Wrapper>
+      <HomeLink />
+      <ChartWrapper option={option} data={data} />
+    </S.Wrapper>
   );
 };
 

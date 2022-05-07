@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import ReactECharts from 'echarts-for-react';
 import theme from 'misc/theme.json';
 import { device } from 'misc/device';
 import { IInvestment, getInvestmentData } from 'misc/api';
+import ChartWrapper from 'components/ChartWrapper';
+import HomeLink from 'components/HomeLink';
+import * as S from './InvestmentsTargets.styled';
 
 const data = getInvestmentData();
 
@@ -40,6 +42,20 @@ const crossAxisOption = {
   }
 };
 
+const axisOptions = (isDesktop: boolean): { xAxis: unknown; yAxis: unknown } => {
+  if (isDesktop) {
+    return {
+      xAxis: mainAxisOption,
+      yAxis: crossAxisOption
+    };
+  }
+
+  return {
+    yAxis: { ...mainAxisOption, inverse: true },
+    xAxis: crossAxisOption
+  };
+};
+
 const InvestmentsTargets = (): JSX.Element => {
   const [isDesktop, setIsDesktop] = useState(window.matchMedia(device.desktop).matches);
 
@@ -48,8 +64,7 @@ const InvestmentsTargets = (): JSX.Element => {
   }, []);
 
   const option = {
-    xAxis: isDesktop ? mainAxisOption : crossAxisOption,
-    yAxis: !isDesktop ? mainAxisOption : crossAxisOption,
+    ...axisOptions(isDesktop),
     tooltip: {
       trigger: 'item'
     },
@@ -82,14 +97,10 @@ const InvestmentsTargets = (): JSX.Element => {
   };
 
   return (
-    <div>
-      <ReactECharts
-        option={option}
-        opts={{
-          height: isDesktop ? 600 : Math.max(600, data.length * 100)
-        }}
-      />
-    </div>
+    <S.Wrapper>
+      <HomeLink />
+      <ChartWrapper option={option} data={data} />
+    </S.Wrapper>
   );
 };
 

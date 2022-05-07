@@ -2,17 +2,16 @@ import React from 'react';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import { Outlet } from 'react-router-dom';
-import Nav from 'components/Nav';
-import ChartWrapper from 'components/ChartWrapper/ChartWrapper';
+import * as S from './App.styled';
+import 'globalstyles/fonts.css';
 
 const App = (): JSX.Element => {
   return (
-    <div>
+    <S.App>
       <Header />
-      <Nav />
       <Outlet />
       <Footer />
-    </div>
+    </S.App>
   );
 };
 
