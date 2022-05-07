@@ -40,4 +40,9 @@ const ExternalLink = styled.a`
   }
 `;
 
-export { Footer, List, ListItem, ExternalLink };
+const Me = styled.span`
+  font-size: 1.25rem;
+  font-family: 'InterSemiBold';
+`;
+
+export { Footer, List, ListItem, ExternalLink, Me };

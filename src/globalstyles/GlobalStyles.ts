@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { device } from 'misc/device';
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -29,7 +30,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     background-color: var(--white);
     min-height: 100vh;
-    font-size: 18px;
+    font-size: 14px;
     /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif; */
@@ -46,6 +47,18 @@ const GlobalStyles = createGlobalStyle`
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
+  }
+
+  @media ${device.tablet} {
+    body {
+      font-size: 16px;
+    }
+  }
+
+  @media ${device.desktop} {
+    body {
+      font-size: 18px;
+    }
   }
 `;
 

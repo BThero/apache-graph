@@ -8,7 +8,7 @@ import * as S from './Footer.styled';
 const Footer = (): JSX.Element => {
   return (
     <S.Footer>
-      <span>Temirlan Baibolov</span>
+      <S.Me>Temirlan Baibolov</S.Me>
       <S.List>
         <S.ListItem>
           <S.ExternalLink href="https://t.me/bthero">

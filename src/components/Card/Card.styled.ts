@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from 'misc/device';
 
 const Card = styled.div`
   width: 100%;
@@ -10,8 +11,13 @@ const Card = styled.div`
   gap: 1rem;
 
   &:hover {
-    transform: scale(1.05);
     cursor: pointer;
+  }
+
+  @media ${device.desktop} {
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 `;
 
