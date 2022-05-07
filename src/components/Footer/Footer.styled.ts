@@ -1,14 +1,19 @@
 import styled from 'styled-components';
+import { device } from 'misc/device';
 
 const Footer = styled.footer`
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: 1rem;
   background-color: var(--lime);
   margin-top: auto;
   color: var(--white);
+
+  @media ${device.desktop} {
+    padding: 1rem 2rem;
+  }
 `;
 
 const List = styled.ul`

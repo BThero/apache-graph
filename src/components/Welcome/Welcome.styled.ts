@@ -5,15 +5,14 @@ const Welcome = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
   padding: 2rem;
-  max-width: 100%;
-  flex-wrap: nowrap;
-  gap: 5%;
 
   @media ${device.desktop} {
     flex-direction: row;
     justify-content: space-around;
     align-items: stretch;
+    gap: 3rem;
   }
 `;
 

@@ -15,6 +15,9 @@ const Card = styled.div`
   }
 
   @media ${device.desktop} {
+    transform: scale(1);
+    transition: all 0.25s ease-in-out;
+
     &:hover {
       transform: scale(1.05);
     }
